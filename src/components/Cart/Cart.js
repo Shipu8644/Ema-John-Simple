@@ -7,11 +7,14 @@ const Cart = (props) => {
     // for (const product of cart) {
     //     total = total + product.price
     // }
+    const total = cart.reduce((a, b) => (a + b.price), 0)
+
     return (
         <div>
             <h3>Order Summary</h3>
-            <h5>Items order:{cart.length}</h5>
-            <h5>Total Price:{cart.reduce((a, b) => (a + b.price), 0)}</h5>
+            <h5>Items order: {cart.length}</h5>
+            <br />
+            <h5>Total Price: {total}</h5>
             {/* <h5>{total}</h5> */}
         </div>
     );
