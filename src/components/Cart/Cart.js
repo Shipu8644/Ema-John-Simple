@@ -6,8 +6,10 @@ const Cart = (props) => {
     // let total = 0;
     // for (const product of cart) {
     //     total = total + product.price
+
     // }
     const total = cart.reduce((a, b) => (a + b.price), 0)
+    const tax = total * (20 / 100);
 
     return (
         <div>
@@ -15,6 +17,7 @@ const Cart = (props) => {
             <h5>Items order: {cart.length}</h5>
             <br />
             <h5>Total Price: {total}</h5>
+            <h5>Tax: {tax}</h5>
             {/* <h5>{total}</h5> */}
         </div>
     );
