@@ -14,9 +14,11 @@ const Shop = () => {
             .then(res => res.json())
             .then(data => {
 
-                setProducts(data)
+                setProducts(data);
+                setDisplayProducts(data);
             })
     }, [])
+
     useEffect(() => {
 
         const savedCart = getStoredCart();
@@ -26,7 +28,7 @@ const Shop = () => {
         const storedCart = [];
         if (products.length) {
             for (const key in savedCart) {
-                console.log(key, savedCart[key]);
+                // console.log(key, savedCart[key]);
                 const addedProduct = products.find(product => product.key === key);
                 if (addedProduct) {
                     const quantity = savedCart[key];
@@ -35,10 +37,9 @@ const Shop = () => {
                     storedCart.push(addedProduct);
                     // console.log(storedCart);
                 }
-
+                setCart(storedCart);
             }
-            setCart(storedCart);
-
+            // setCart(storedCart);
         }
 
     }, [products])
@@ -53,7 +54,9 @@ const Shop = () => {
     const handleSearch = (event) => {
         const searchText = (event.target.value);
         const matchProducts = products.filter(product => product.name.toLowerCase().includes(searchText.toLowerCase()));
+        setDisplayProducts(matchProducts);
         console.log(matchProducts.length);
+
     }
 
     return (
@@ -68,7 +71,7 @@ const Shop = () => {
                 <div className="product-container">
                     {/* <h3>Products: {products.length}</h3> */}
                     {
-                        products.map(product => <Product
+                        displayProducts.map(product => <Product
                             key={product.key}
                             product={product}
                             handleAddTocart={handleAddTocart}

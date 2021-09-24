@@ -2,9 +2,10 @@ import React from 'react';
 import './Cart.css'
 const Cart = (props) => {
     const { cart } = props;
-    console.log(cart);
-    let total = 0;
+    // console.log(cart);
     let totalQuantity = 0;
+    let total = 0;
+
     for (const product of cart) {
         if (!product.quantity) {
             product.quantity = 1;
@@ -15,7 +16,7 @@ const Cart = (props) => {
 
     // const total = cart.reduce((a, b) => (a + b.price * b.quantity), 0);
     // const totalQuantity = cart.reduce((a, b) => (a + b.quantity), 0);
-    console.log(totalQuantity);
+    // console.log(totalQuantity);
     const shipping = total > 0 ? 15 : 0;
     const tax = (total + shipping) * 0.10;
     const grandTotal = shipping + total + tax;
