@@ -6,6 +6,7 @@ import './Shop.css'
 const Shop = () => {
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useState([]);
+    const [displayProducts, setDisplayProducts] = useState([]);
 
     useEffect(() => {
 
@@ -16,14 +17,6 @@ const Shop = () => {
                 setProducts(data)
             })
     }, [])
-
-    const handleAddTocart = (product) => {
-        const newCart = [...cart, product];
-        setCart(newCart);
-        // console.log(product);
-        // Save to local storage for now
-        addToDb(product.key);
-    }
     useEffect(() => {
 
         const savedCart = getStoredCart();
@@ -49,9 +42,28 @@ const Shop = () => {
         }
 
     }, [products])
-    return (
-        <div>
 
+    const handleAddTocart = (product) => {
+        const newCart = [...cart, product];
+        setCart(newCart);
+        // console.log(product);
+        // Save to local storage for now
+        addToDb(product.key);
+    }
+    const handleSearch = (event) => {
+        const searchText = (event.target.value);
+        const matchProducts = products.filter(product => product.name.toLowerCase().includes(searchText.toLowerCase()));
+        console.log(matchProducts.length);
+    }
+
+    return (
+        <>
+
+            <div className="search-container">
+                <input
+                    onChange={handleSearch}
+                    type="text" placeholder='Search Product' />
+            </div>
             <div className="shop-container">
                 <div className="product-container">
                     {/* <h3>Products: {products.length}</h3> */}
@@ -69,7 +81,7 @@ const Shop = () => {
 
                 </div>
             </div>
-        </div >
+        </>
     );
 };
 

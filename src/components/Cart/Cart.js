@@ -17,7 +17,7 @@ const Cart = (props) => {
     // const totalQuantity = cart.reduce((a, b) => (a + b.quantity), 0);
     console.log(totalQuantity);
     const shipping = total > 0 ? 15 : 0;
-    const tax = total * (20 / 100);
+    const tax = (total + shipping) * 0.10;
     const grandTotal = shipping + total + tax;
 
     return (
@@ -26,8 +26,9 @@ const Cart = (props) => {
             <h5 className='cart-middle'>Items order: {totalQuantity}</h5>
             <br />
             <h5>Total Price: ${total.toFixed(2)}</h5>
-            <h5>Tax: ${tax.toFixed(2)}</h5>
             <h5>shipping: ${shipping.toFixed(2)}</h5>
+            <h5>Tax: ${tax.toFixed(2)}</h5>
+
             <h5>grandTotal: ${grandTotal.toFixed(2)}</h5>
 
             {/* <h5>{total}</h5> */}
