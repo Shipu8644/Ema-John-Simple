@@ -55,7 +55,7 @@ const Shop = () => {
         const searchText = (event.target.value);
         const matchProducts = products.filter(product => product.name.toLowerCase().includes(searchText.toLowerCase()));
         setDisplayProducts(matchProducts);
-        console.log(matchProducts.length);
+        // console.log(matchProducts.length);
 
     }
 

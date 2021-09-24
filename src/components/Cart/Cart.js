@@ -10,10 +10,12 @@ const Cart = (props) => {
         if (!product.quantity) {
             product.quantity = 1;
         }
+
         total = total + product.price * product.quantity;
+        console.log(product.quantity);
         totalQuantity = totalQuantity + product.quantity;
     }
-
+    console.log(totalQuantity);
     // const total = cart.reduce((a, b) => (a + b.price * b.quantity), 0);
     // const totalQuantity = cart.reduce((a, b) => (a + b.quantity), 0);
     // console.log(totalQuantity);
